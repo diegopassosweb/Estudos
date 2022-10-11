@@ -1,0 +1,48 @@
+React Básico
+
+1- State -  é uma variavel que se guarda um valor!
+Toda vez que a pagina é carregada, o conteudo é renderizado novamente.
+Sempre que o state é atualizado, o conteudo é alterado.
+
+import React, { useState } from "react";
+
+const App = () => {
+  
+  const [message, setMessage] = useState("hello world");
+
+  return (
+    <div className="container">
+      {message}
+      <button onClick={() => setMessage("hello")}>mudar mensagem</button>
+    </div>
+  );
+};
+export default App;
+
+------------------------------------------------------------------------------------
+
+2- Props - São dados que se passa de um componente pai para um filho.
+
+import React, { useState } from "react";
+import "./App.css";
+import Tasks from "./components/Tasks";
+
+const App = () => {
+  const [tasks, setTasks] = useState([
+    {
+      id: "1",
+      title: "Estudar programaçao",
+      completed: false,
+    },
+    {
+      id: "2",
+      title: "Ler livros",
+      completed: true,
+    },
+  ]);
+
+  return <div className="container">
+      <Tasks task={tasks}/>
+  </div>;
+};
+export default App;
