@@ -1,54 +1,40 @@
-import React, { useState } from 'react';
-import './App.css';
-import Footer from './components/Footer';
-import { Header } from './components/Header';
 
-function App() {
+import React, { useState } from "react";
+import * as C from "./App.styles";
+import AddArea from "./components/AddArea";
+import ListItem from "./components/Listitem";
+import { Item } from "./types/Item";
 
- 
-  const [name, setName] = useState("Usuario");
-  const [age, setAge] = useState(90);
- const [bg, setbg] = useState("#FF0000");
+const App = () => {
+  const [list, setList] = useState<Item[]>([
+    {id: 1, name: "Comprar pao na padaria", done: false},
+    {id: 2, name: "Comprar leite no mercado", done: true},
+  ]);
 
- const [list, setList] = useState([
-    "Primeiro texto",
-    "Segundo texo",
-    "Terceiro texto",
- ])
- 
- const handle20 = () => {
-  setAge(90);
-  setbg("#00FF00");
- }
-
- const handle90 = () => {
-  setAge(20);
-  setbg("#FF0000");
- }
+  const handleAddTask = (taskName: string) => {
+    let newList = [...list];
+    newList.push({
+      id: list.length +1,
+      name: taskName,
+      done: false
+    });
+    setList(newList);
+  }
 
   return (
+    <C.Container>
+      <C.Area>
+        <C.Header>Lista de Tarefas</C.Header>
 
-    <div style={{backgroundColor: bg}}>
-      <Header name={name} age={age}/>
+        <AddArea onEnter={handleAddTask} />
 
-      {age === 90 &&
-        <button onClick={handle90}>Tenho 90 anos</button>
-      }
+        {list.map((item, index) => (
+          <ListItem key={index} item={item} />
+        ))}
 
-      {age === 20 &&
-        <button onClick={handle20}>Tenho 20 anos</button>
-      }
-     
-     <hr />
-
-     <ul>
-      {list.map((item, index) =>(
-        <li key={index}>{item}</li>
-      ))}
-     </ul>
-      <Footer />
-    </div>
-  );
-}
+      </C.Area>
+    </C.Container>
+  )
+};
 
 export default App;
