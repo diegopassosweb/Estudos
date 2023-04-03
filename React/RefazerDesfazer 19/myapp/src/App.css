@@ -1,0 +1,30 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+#page {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.dot {
+  display: block;
+  background: red;
+  width: 10px;
+  height: 10px;
+
+  position: absolute;
+  top: 100px;
+  left: 100px;
+}
